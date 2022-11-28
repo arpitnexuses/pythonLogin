@@ -14,19 +14,19 @@ if ENV_FILE:
     load_dotenv(ENV_FILE)
 
 app = Flask(__name__)
-app.secret_key = env.get("APP_SECRET_KEY")
+app.secret_key = "hellohellohello"
 
 
 oauth = OAuth(app)
 
 oauth.register(
     "auth0",
-    client_id=env.get("AUTH0_CLIENT_ID"),
-    client_secret=env.get("AUTH0_CLIENT_SECRET"),
+    client_id="TxShWC5vQrmGTcj33ilAvQVeDm1fR848",
+    client_secret="VYggbWG2WG84I3QLguFwdK4tJ9qQ9k_muaPDc1E3r8FxwLMeGgw2U0yO-n3_hHVu",
     client_kwargs={
         "scope": "openid profile email",
     },
-    server_metadata_url=f'https://{env.get("AUTH0_DOMAIN")}/.well-known/openid-configuration',
+    server_metadata_url=f'https://dev-z4sph54p.us.auth0.com/.well-known/openid-configuration',
 )
 
 
@@ -59,12 +59,12 @@ def logout():
     session.clear()
     return redirect(
         "https://"
-        + env.get("AUTH0_DOMAIN")
+        + "dev-z4sph54p.us.auth0.com
         + "/v2/logout?"
         + urlencode(
             {
                 "returnTo": url_for("home", _external=True),
-                "client_id": env.get("AUTH0_CLIENT_ID"),
+                "client_id": "TxShWC5vQrmGTcj33ilAvQVeDm1fR848",
             },
             quote_via=quote_plus,
         )
